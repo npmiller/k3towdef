@@ -1,0 +1,114 @@
+@startuml
+
+class Cell {
+	x
+	y
+	height
+	width
+	grid
+	constructible
+	drawLine
+	new()
+	update()
+	place()
+	onClick()
+	drawRange()
+	draw()
+}
+
+class GameCell {
+	t
+	new(drawIn, onclick)
+	onClick(grid)
+	draw()
+}
+
+class PanelCell {
+	player
+	new(drawIn, player, onclick, drawMouse)
+	drawIn(player)
+	onClick(grid)
+	drawMouse()
+}
+
+class Path {
+	move
+	new(move)
+	draw()
+}
+
+class EnemyGenerator {
+	waves
+	player
+	new(move, waves, player)
+	getValue(value)
+	update(dt)
+}
+
+Cell <|-- Path
+Cell <|-- GameCell
+Cell <|-- PanelCell
+Path <|-- EnemyGenerator
+
+abstract class Tower { 
+	constructible = false
+	range
+	frequency
+	damage
+	x,y
+	width,heigth
+	grid
+	new()
+	onClick()
+	updateSize()
+	draw()
+	drawRange()
+	place(coord, grid)
+	isInRange(x, y)
+}
+
+class basicTower {
+	lastshot
+	drawParameters
+	Sytle
+	RangeStyle
+	update(dt)
+}
+class FreezeTower {
+	lastshot
+	drawParameters
+	Sytle
+	RangeStyle
+	update(dt)
+}
+class SlowTower {
+	lastshot
+	drawParameters
+	Sytle
+	RangeStyle
+	update(dt)
+}
+class SplashTower {
+	lastshot
+	drawParameters
+	Sytle
+	RangeStyle
+	update(dt)
+}
+class BeamTower {
+	beamwidth
+	drawParameters
+	Sytle
+	RangeStyle
+	radius
+	locked
+	update(dt)
+	draw()
+}
+Tower <|-- basicTower
+Tower <|-- BeamTower
+Tower <|-- FreezeTower
+Tower <|-- SlowTower
+Tower <|-- SplashTower
+
+@enduml
