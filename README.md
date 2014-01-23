@@ -12,7 +12,7 @@ To play it you just need to have löve installed and run :
 
 
 ===
-This little game has been made made by four student of the _INSA de rouen_, a French engineering school, during their second year of _classe préparatoire_.
+This little game has been made made by four student of the _INSA de Rouen_, a French engineering school, during their second year of _classe préparatoire_.
 
 Copyright (C) 2011/2012 Pierre Besson, Sami Boukortt, Nicolas Miller, Florian Paindorge
 
