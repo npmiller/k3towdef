@@ -24,9 +24,9 @@ function love.keypressed(key, unicode)
 		fullscreen = not fullscreen
 
 		if fullscreen then
-			love.graphics.setMode(0, 0, true)
+			love.window.setFullscreen(true)
 		else
-			love.graphics.setMode(defs.width, defs.height, false)
+			love.window.setFullscreen(false)
 		end
 
 		grid:updateSize()

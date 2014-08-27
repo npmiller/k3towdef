@@ -4,13 +4,13 @@ function love.conf(t)
 
 	local defs = require 'design/defs'
 
-	t.screen.fullscreen = defs.fullscreen
+	t.window.fullscreen = defs.fullscreen
 
-	if t.screen.fullscreen then
-		t.screen.width = 0
-		t.screen.height = 0
+	if t.window.fullscreen then
+		t.window.width = 0
+		t.window.height = 0
 	else
-		t.screen.width = defs.width
-		t.screen.height = defs.height
+		t.window.width = defs.width
+		t.window.height = defs.height
 	end
 end

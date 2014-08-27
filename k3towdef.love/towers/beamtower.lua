@@ -59,7 +59,8 @@ function BeamTower:draw()
 				self.beamwidth = 10 * random()
 			end
 
-			graphics.setLine(self.beamwidth, 'smooth')
+			graphics.setLineWidth(self.beamwidth)
+			graphics.setLineStyle('smooth')
 			graphics.line(
 				self.x * self.width - (1 / 2) * self.width - (1 / 2) * self.beamwidth,
 				self.y * self.height - (1 / 2) * self.height - (1 / 2) * self.beamwidth,
