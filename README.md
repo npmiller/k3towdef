@@ -2,14 +2,23 @@ k3towdef
 ========
 K3towdef is a small tower defense game written entirely in lua using the framework [löve](https://love2d.org/).
 
-To play it you just need to have löve installed and run :
+Installation
+============
+GNU/Linux
+---------
+You will need to have the adequate version of löve installed (0.9 on the last release). You can then download the `k3towdef.love` file from the last release and run:
+
+    love k3towdef.love
+
+Alternatively, you can also clone the repository and use:
 
     love k3towdef.love
     
+`k3towdef.love` being here the repository containing the sources instead of the zipped release.
 
-
-
-
+Windows
+-------
+On Windows, you need to download the `k3towdef-win32` zip file of the last release. Then unzip it and run the `k3towdef.exe` executable to run the game.
 
 ===
 This little game has been made made by four student of the _INSA de Rouen_, a French engineering school, during their second year of _classe préparatoire_.
