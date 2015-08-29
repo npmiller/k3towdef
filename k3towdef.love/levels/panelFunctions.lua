@@ -38,6 +38,7 @@ function draw(image)
 	local img = graphics.newImage("design/img/"..image..".png")
 	
 	return function(player, panelCell)
+		graphics.setColor(255, 255, 255)
 		graphics.draw(img,
 				(panelCell.x - 1) * panelCell.width,
 				(panelCell.y - 1) * panelCell.height,
@@ -51,7 +52,7 @@ function drawTower(image, price)
 	local img = graphics.newImage("design/img/"..image..".png")
 	
 	return function(player,panelCell)
-		graphics.reset()
+		graphics.setColor(255, 255, 255)
 		graphics.draw(img,
 				(panelCell.x - 1) * panelCell.width,
 				(panelCell.y - 1) * panelCell.height,

@@ -58,7 +58,7 @@ local waves = {
 Cells = {
 	{Cell:new(), Cell:new(), EnemyGenerator:new(l.down, waves, player), Cell:new(), 
 	Cell:new(), Cell:new(), Cell:new(), Cell:new(), Cell:new(), 
-	PanelCell:new(f.drawInfo, player, f.empty, nil)},
+	PanelCell:new(nil, player, f.empty, nil, f.drawInfo)},
 
 	{Cell:new(), Cell:new(), Path:new(l.down), Cell:new(), Cell:new(), Cell:new(), 
 	Cell:new(), Cell:new(), Cell:new(), 

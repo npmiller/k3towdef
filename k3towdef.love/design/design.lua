@@ -15,7 +15,7 @@ local imgs = {
 }
 
 local function drawImg(self, img)
-	graphics.reset()
+	graphics.setColor(255, 255, 255)
 	graphics.draw(img,
 	(self.x - 1) * self.width,
 	(self.y - 1) * self.height,

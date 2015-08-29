@@ -29,21 +29,16 @@ function BeamTower:new(Cell, grid)
 		RangeStyle = defs.RangeStyle,
 		radius = (1 + 1 / 2) ^ 2,
 		damage = 25,
+		dynamic = true
 	}
 
 	setmetatable(beamtower, {__index = self})
 
-	insert(grid.towers, beamtower)
+	insert(grid.dynamicCells, beamtower)
 	return beamtower
-   -- On considère la vitesse comme très rapide par rapport à l'ennemi
-   -- l'ennemi est presque statique lorsqu'un rayon est tiré
 end
 
-function BeamTower:draw()
-	--Tower.draw(self)
-	design.BeamTowerDraw(self)
---debut rayon
-
+function BeamTower:dynamicDraw()
 	for i, enemy in ipairs(self.grid.enemies) do
 		local length_beam = sqrt(
 			(self.x * self.width - enemy.x) ^ 2 +
@@ -70,6 +65,10 @@ function BeamTower:draw()
 	end
 
 	self.locked = false
+end
+
+function BeamTower:draw()
+	design.BeamTowerDraw(self)
 end
 
 function BeamTower:update(dt)
