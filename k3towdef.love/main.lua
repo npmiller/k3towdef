@@ -37,6 +37,9 @@ function love.keypressed(key, unicode)
 	if key == "q" then
 		love.quitApplication()
 	end
+	if key == "m" then
+		m.toggle()
+	end
 end
 
 function love.mousepressed(x,y,button)
