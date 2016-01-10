@@ -43,7 +43,7 @@ function gridDraw(self)
 end
 
 local waves = {
-	{speed = function() return random(3) end, life = 40, frequency = 1, enemyNumber = 20},
+	{speed = 1, life = 40, frequency = 1, enemyNumber = 20},
 	{speed = 2, life = 30, frequency = 2, enemyNumber = 20},
 	{speed = 1, life = 25, frequency = 8, enemyNumber = 20},
 	{speed = 2, life = 40, frequency = 2, enemyNumber = 20},

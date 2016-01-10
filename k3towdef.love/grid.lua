@@ -44,7 +44,7 @@ function Grid:load(base)
 	grid:updateSize()
 
 	graphics.setCanvas(canvas)
-	canvas:clear()
+	graphics.clear()
 	grid:gridDraw()
 	for y, line in ipairs(grid.cells) do
 		for x, cell in ipairs(line) do

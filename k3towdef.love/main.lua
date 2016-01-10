@@ -24,9 +24,9 @@ function love.keypressed(key, unicode)
 		fullscreen = not fullscreen
 
 		if fullscreen then
-			love.window.setFullscreen(true)
+			love.window.setFullscreen(true, "exclusive")
 		else
-			love.window.setFullscreen(false)
+			love.window.setFullscreen(false, "exclusive")
 		end
 
 		grid:updateSize()
@@ -42,8 +42,8 @@ function love.keypressed(key, unicode)
 	end
 end
 
-function love.mousepressed(x,y,button)
-	if button == "l" then
+function love.mousepressed(x,y,button,istouch)
+	if button == 1 then
 		xg = math.ceil(x / grid.cells[1][1].width)
 		yg = math.ceil(y / grid.cells[1][1].height)
 
@@ -56,7 +56,7 @@ function love.mousepressed(x,y,button)
 			grid.focus = true
 		end
 	end
-	if button == "r" then 
+	if button == 2 then
 		grid.focus = false
 	end
 end
