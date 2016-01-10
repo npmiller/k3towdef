@@ -6,7 +6,7 @@ Installation
 ============
 GNU/Linux
 ---------
-You will need to have the adequate version of löve installed (0.9 on the last release). You can then download the `k3towdef.love` file from the last release and run:
+You will need to have the adequate version of löve installed. You can then download the `k3towdef.love` file from the last release and run:
 
     love k3towdef.love
 
@@ -21,7 +21,7 @@ Windows
 On Windows, you need to download the `k3towdef-win32` zip file of the last release. Then unzip it and run the `k3towdef.exe` executable to run the game.
 
 ===
-This little game has been made made by four student of the _INSA de Rouen_, a French engineering school, during their second year of _classe préparatoire_.
+This little game has been made made by four student of the _INSA de Rouen_, a French engineering school, during their second year of _cycle préparatoire intégré_.
 
 Copyright (C) 2011/2012 Pierre Besson, Sami Boukortt, Nicolas Miller, Florian Paindorge
 
