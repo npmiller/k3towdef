@@ -9,11 +9,14 @@ local     love = love
 
 module 'levels/panelFunctions'
 
+local font = graphics.newFont 'res/DejaVuSans.ttf'
+
 function empty(player, panelCell)
 end
 
 function drawInfo(player, panelCell)
 	graphics.setColor(255, 255, 255)
+	graphics.setFont(font)
 	graphics.print(player.life .. " ♥\n"..player.money .. " $\n" .. player.waveNumber .. "/" .. player.totWave,
 		(panelCell.x - 1) * panelCell.width,
 		(panelCell.y - 1) * panelCell.height,

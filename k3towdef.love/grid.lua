@@ -16,8 +16,6 @@ module 'grid'
 
 Grid = {}
 
-local canvas = graphics.newCanvas(defs.width, defs.height)
-
 function Grid:load(base)
 	local level = loadLevel('levels/level' .. base)
 

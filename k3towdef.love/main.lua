@@ -16,7 +16,6 @@ end
 function love.load()
 	grid = Grid:load 'Welcome'
 	m.playMusic 'musix-rm.mod'
-	love.graphics.setFont(love.graphics.newFont("res/DejaVuSans.ttf", 13))
 end
 
 function love.keypressed(key, unicode)
