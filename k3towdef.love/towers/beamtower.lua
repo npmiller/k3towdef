@@ -23,7 +23,7 @@ function BeamTower:new(Cell, grid)
 		grid = grid,
 		beamwidth = 10,
 		drawParameters = {},
-		locked = false,
+		locked = nil,
 		range = 1,
 		Style = defs.BeamTowerStyle,
 		RangeStyle = defs.RangeStyle,
@@ -39,32 +39,27 @@ function BeamTower:new(Cell, grid)
 end
 
 function BeamTower:dynamicDraw()
-	for i, enemy in ipairs(self.grid.enemies) do
+	if self.locked ~= nil and self.locked.ingame then
 		local length_beam = sqrt(
-			(self.x * self.width - enemy.x) ^ 2 +
-			(self.y * self.height - enemy.y) ^ 2) --Pythagore FTW
+			(self.x * self.width - self.locked.x) ^ 2 +
+			(self.y * self.height - self.locked.y) ^ 2) --Pythagore FTW
 
-		if self:isInRange(enemy.x, enemy.y) and not self.locked then
-			self.locked = true
-			graphics.setColor(73, 108, 236)
+		graphics.setColor(73, 108, 236)
 
-			if self.beamwidth >= 3 then
-				self.beamwidth = self.beamwidth * 0.99
-			else
-				self.beamwidth = 10 * random()
-			end
-
-			graphics.setLineWidth(self.beamwidth)
-			graphics.setLineStyle('smooth')
-			graphics.line(
-				self.x * self.width - (1 / 2) * self.width - (1 / 2) * self.beamwidth,
-				self.y * self.height - (1 / 2) * self.height - (1 / 2) * self.beamwidth,
-				(enemy.x - 1 / 2) * self.width + (1 / 2) * self.beamwidth,
-				(enemy.y - 1 / 2) * self.height + self.beamwidth)
+		if self.beamwidth >= 3 then
+			self.beamwidth = self.beamwidth * 0.99
+		else
+			self.beamwidth = 10 * random()
 		end
-	end
 
-	self.locked = false
+		graphics.setLineWidth(self.beamwidth)
+		graphics.setLineStyle('smooth')
+		graphics.line(
+			self.x * self.width - (1 / 2) * self.width - (1 / 2) * self.beamwidth,
+			self.y * self.height - (1 / 2) * self.height - (1 / 2) * self.beamwidth,
+			(self.locked.x - 1 / 2) * self.width + (1 / 2) * self.beamwidth,
+			(self.locked.y - 1 / 2) * self.height + self.beamwidth)
+	end
 end
 
 function BeamTower:draw()
@@ -72,12 +67,22 @@ function BeamTower:draw()
 end
 
 function BeamTower:update(dt)
-	for i, enemy in ipairs(self.grid.enemies) do
-		if self:isInRange(enemy.x, enemy.y) and not self.locked then
-			enemy:hit(self.damage * dt)
-			self.locked = true
+	local findEnemy = function ()
+		for i, enemy in ipairs(self.grid.enemies) do
+			if self:isInRange(enemy.x, enemy.y) then
+				return enemy
+			end
 		end
+		return nil
 	end
 
-	self.locked = false
+	if self.locked ~= nil and self.locked.ingame then
+		if not self:isInRange(self.locked.x, self.locked.y) then
+			self.locked = findEnemy()
+		else
+			self.locked:hit(self.damage * dt)
+		end
+	else
+		self.locked = findEnemy()
+	end
 end

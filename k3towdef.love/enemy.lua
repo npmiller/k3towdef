@@ -31,7 +31,8 @@ function Enemy:new(life, speed, grid, position)
 		progress = -1,
 		direction = {x = 0, y = 0},
 		radius = 1,
-		x = 0, y = 0
+		x = 0, y = 0,
+		ingame = true
 	}
 
 	setmetatable(enemy, {__index = self})
@@ -67,6 +68,7 @@ function Enemy:update(dt)
 		self.direction = self.grid.cells[self.position.y][self.position.x]:move()
 		if self.direction == "stop" then
 			remove(self.grid.enemies, self.i)
+			self.ingame = false
 			self.grid.player:hit(1)
 		end
 
@@ -74,7 +76,8 @@ function Enemy:update(dt)
 
 	if not self:isAlive() then
 		remove(self.grid.enemies, self.i)
-		self.grid.player.money = self.grid.player.money +floor(self.maxLife / 25)
+		self.ingame = false
+		self.grid.player.money = self.grid.player.money + floor(self.maxLife / 25)
 	end
 	if self.speed == 0.5 then
 		self.slowTime = self.slowTime + dt
