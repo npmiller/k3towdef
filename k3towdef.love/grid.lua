@@ -53,6 +53,7 @@ function Grid:load(base)
 end
 
 function Grid:drawCanvas()
+	graphics.reset()
 	self.canvas = graphics.newCanvas(self.width, self.height)
 	graphics.setCanvas(self.canvas)
 	graphics.clear()
