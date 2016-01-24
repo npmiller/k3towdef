@@ -39,23 +39,30 @@ function Grid:load(base)
 
 	setmetatable(grid, {__index = self})
 
-	grid:updateSize()
-
-	graphics.setCanvas(canvas)
-	graphics.clear()
-	grid:gridDraw()
 	for y, line in ipairs(grid.cells) do
 		for x, cell in ipairs(line) do
-			cell:draw()
 			if cell.dynamic then
 				insert(grid.dynamicCells, cell)
 			end
 		end
 	end
-	graphics.setCanvas()
-	graphics.reset()
+
+	grid:updateSize()
 
 	return grid
+end
+
+function Grid:drawCanvas()
+	self.canvas = graphics.newCanvas(self.width, self.height)
+	graphics.setCanvas(self.canvas)
+	graphics.clear()
+	self:gridDraw()
+	for y, line in ipairs(self.cells) do
+		for x, cell in ipairs(line) do
+			cell:draw()
+		end
+	end
+	graphics.setCanvas()
 end
 
 function Grid:updateSize()
@@ -77,6 +84,8 @@ function Grid:updateSize()
 	for i, tower in ipairs(self.towers) do
 		tower:updateSize()
 	end
+
+	self:drawCanvas()
 end
 
 function Grid:update(dt)
@@ -99,7 +108,7 @@ end
 
 function Grid:draw()
 	graphics.reset()
-	graphics.draw(canvas)
+	graphics.draw(self.canvas)
 
 	for i, cell in pairs(self.dynamicCells) do
 		cell:dynamicDraw()

@@ -16,6 +16,7 @@ end
 function love.load()
 	grid = Grid:load 'Welcome'
 	m.playMusic 'musix-rm.mod'
+	grid:updateSize()
 end
 
 function love.keypressed(key, unicode)
@@ -39,6 +40,10 @@ function love.keypressed(key, unicode)
 	if key == "m" then
 		m.toggle()
 	end
+end
+
+function love.resize()
+	grid:updateSize()
 end
 
 function love.mousepressed(x,y,button,istouch)
