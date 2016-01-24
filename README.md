@@ -16,6 +16,14 @@ Alternatively, you can also clone the repository and use:
     
 `k3towdef.love` being here the repository containing the sources instead of the zipped release.
 
+Android
+-------
+
+To run k3towdef on Android, you will need to install the [löve
+application](https://play.google.com/store/apps/details?id=org.love2d.android)
+from the play store, and then download the latest `k3towdef.love` file
+from the download page, and run it with the löve application.
+
 Windows
 -------
 On Windows, you need to download the `k3towdef-win32` zip file of the last release. Then unzip it and run the `k3towdef.exe` executable to run the game.
