@@ -18,7 +18,7 @@ Enemy = {}
 --@param grid la grille sur laquelle il va être placé
 --@param position la position à laquelle il sera placé sur la grille
 --@return enemy un objet enemi
-function Enemy:new(life, speed, grid, position)
+function Enemy:new(life, speed, grid, position, direction)
 	local enemy = {
 		life = life,
 		maxLife = life,
@@ -29,7 +29,7 @@ function Enemy:new(life, speed, grid, position)
 		grid = grid,
 		position = position,
 		progress = -1,
-		direction = {x = 0, y = 0},
+		direction = direction,
 		radius = 1,
 		x = 0, y = 0,
 		ingame = true

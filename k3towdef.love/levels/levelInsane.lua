@@ -53,7 +53,6 @@ local waves = {
 	{speed = 4, life = 30, frequency = 7, enemyNumber = 15},
 	{speed = 4, life = 80, frequency = 6, enemyNumber = 20},
 	{speed = function() return random(6) end, life = 100, frequency = 4, enemyNumber = 10},
-	{speed = 0, life = 0, frequency = 0, enemyNumber = 1}
 }
 
 local function randPath()

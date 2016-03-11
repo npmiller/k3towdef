@@ -68,7 +68,7 @@ end
 function love.draw()
 	love.graphics.reset()
 	grid:draw()
-	
+
 	if grid.focus then
 		local drawLine = grid.cells[grid.focused.y][grid.focused.x].drawMouse ~= nil
 
@@ -87,7 +87,7 @@ end
 function love.update(dt)
 	if grid.player ~= nil and not grid.player:isAlive() then
 		grid = Grid:load "GameOver"
-	elseif grid.End and not next(grid.enemies) then
+	elseif grid:finished() then
 		grid = Grid:load "Win"
 	end
 	grid:update(dt)

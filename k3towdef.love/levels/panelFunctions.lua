@@ -26,7 +26,7 @@ function drawInfo(player, panelCell)
 end
 
 function nextWaveClick(grid)
-	grid.play = true
+	grid:play()
 end
 
 function retry(grid)

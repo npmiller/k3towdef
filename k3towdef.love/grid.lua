@@ -5,6 +5,7 @@ local setmetatable = setmetatable
 local         Cell = (require 'cell').Cell
 local         Path = (require 'path').Path
 local         defs = require 'design/defs'
+local         next = next
 local       insert = table.insert
 
 local function loadLevel(name)
@@ -31,10 +32,10 @@ function Grid:load(base)
 		focused = {x = 1, y = 1},
 		focus = false,
 		towerType = "Cell",
-		play = false,
 		End = false,
 		canvas = canvas,
 		dynamicCells = {},
+		generators = {},
 	}
 
 	setmetatable(grid, {__index = self})
@@ -44,7 +45,15 @@ function Grid:load(base)
 			if cell.dynamic then
 				insert(grid.dynamicCells, cell)
 			end
+			if cell.nextWave then
+				insert(grid.generators, cell)
+			end
 		end
+	end
+
+	if #grid.generators ~= 0 then
+		grid.player.totWave = grid.generators[1]:numberOfWaves()
+		grid.player.waveNumber = 0
 	end
 
 	grid:updateSize()
@@ -104,6 +113,28 @@ function Grid:update(dt)
 	end
 	for i, explosion in ipairs(self.explosions) do
 		explosion:update(dt, i)
+	end
+end
+
+function Grid:finished()
+	return self:wavesFinished() and not next(self.enemies) and next(self.generators) and self.player.totWave == self.player.waveNumber
+end
+
+function Grid:wavesFinished()
+	for _, g in pairs(self.generators) do
+		if not g:waveFinished() then
+			return false
+		end
+	end
+	return true
+end
+
+function Grid:play()
+	if self:wavesFinished() then
+		for _, g in pairs(self.generators) do
+			g:nextWave()
+		end
+		self.player.waveNumber = self.player.waveNumber + 1
 	end
 end
 

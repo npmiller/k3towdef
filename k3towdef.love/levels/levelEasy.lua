@@ -53,7 +53,6 @@ local waves = {
 	{speed = 3, life = 25, frequency = 2, enemyNumber = 10},
 	{speed = 3, life = 35, frequency = 3, enemyNumber = 10},
 	{speed = 4, life = 60, frequency = 4, enemyNumber = 5},
-	{speed = 0, life = 0, frequency = 0, enemyNumber = 1}
 }
 
 Cells = {
