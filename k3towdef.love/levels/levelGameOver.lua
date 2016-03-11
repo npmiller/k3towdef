@@ -13,16 +13,12 @@ setfenv(1, P)
 
 m.playMusic 'musix-rm.mod'
 
-bg = graphics.newImage("levels/img/background.jpeg")
-
 function gridDraw(self)
-	graphics.draw(
-		bg,
-		0,
-		0,
-		0,
-		graphics.getWidth()/defs.width,
-		graphics.getHeight()/defs.height
+	graphics.setColor(0, 0, 0, 128)
+	graphics.rectangle(
+		'fill', 0, 0,
+		graphics.getWidth(),
+		graphics.getHeight()
 		)
 end
 

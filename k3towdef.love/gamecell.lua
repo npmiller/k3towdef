@@ -27,11 +27,7 @@ function GameCell:new(drawIn, onclick, drawMove)
 	end
 
 	function gamecell:onClick(grid)
-		if onclick ~= nil then
-			return onclick(grid, self)
-		else
-			return grid
-		end
+		return (onclick or function (a,b) return nil end)(grid, self)
 	end
 
 	setmetatable(gamecell, {__index = self})
