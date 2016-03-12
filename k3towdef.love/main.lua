@@ -68,6 +68,10 @@ function love.mousepressed(x,y,button,istouch)
 		xg = math.ceil(x / layer.cells[1][1].width)
 		yg = math.ceil(y / layer.cells[1][1].height)
 
+		-- Handle clicks at coordinates of 0
+		if xg == 0 then xg = 1 end
+		if yg == 0 then yg = 1 end
+
 		if layer.cells[yg][xg].t == "gamecell"  then
 			local new_grid = layer.cells[yg][xg]:onClick(layer)
 			if new_grid ~= nil then
