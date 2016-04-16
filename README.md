@@ -19,10 +19,8 @@ Alternatively, you can also clone the repository and use:
 Android
 -------
 
-To run k3towdef on Android, you will need to install the [löve
-application](https://play.google.com/store/apps/details?id=org.love2d.android)
-from the play store, and then download the latest `k3towdef.love` file
-from the download page, and run it with the löve application.
+K3towdef also runs on Android, you can get an apk on the releases
+page.
 
 Windows
 -------
