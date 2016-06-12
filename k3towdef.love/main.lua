@@ -97,6 +97,24 @@ function love.mousepressed(x,y,button,istouch)
 	end
 end
 
+function love.mousereleased(x, y, button, istouch)
+	if istouch and button == 1 and overlay == nil then
+		local cell = grid.cells[grid.focused.y][grid.focused.x]
+		if cell.drawMouse ~= nil then
+			xg = math.ceil(x / grid.cells[1][1].width)
+			yg = math.ceil(y / grid.cells[1][1].height)
+
+			-- Handle clicks at coordinates of 0
+			if xg == 0 then xg = 1 end
+			if yg == 0 then yg = 1 end
+
+			grid.cells[yg][xg]:onClick(grid)
+			grid.focused = { x = xg, y = yg }
+			grid.focus = true
+		end
+	end
+end
+
 function love.draw()
 	love.graphics.reset()
 	grid:draw()
