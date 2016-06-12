@@ -29,12 +29,14 @@ function nextWaveClick(grid)
 	grid:play()
 end
 
-function retry(grid)
-	return Grid:load "Welcome"
+function retry(overlay, grid)
+	return Grid:load(grid.name)
 end
-function quit(grid)
-	love.quitApplication()
-	return grid
+function back()
+	return Grid:load("Welcome")
+end
+function quit()
+	return love.quitApplication()
 end
 
 function draw(image)

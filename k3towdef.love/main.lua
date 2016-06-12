@@ -79,7 +79,7 @@ function love.mousepressed(x,y,button,istouch)
 		if yg == 0 then yg = 1 end
 
 		if layer.cells[yg][xg].t == "gamecell"  then
-			local new_grid = layer.cells[yg][xg]:onClick(layer)
+			local new_grid = layer.cells[yg][xg]:onClick(overlay, grid)
 			if new_grid ~= nil then
 				if overlay ~= nil then
 					overlay = nil

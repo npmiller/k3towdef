@@ -47,7 +47,7 @@ Cells = {
 	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
 	GameCell:new(f.empty, f.Click)},
 
-	{GameCell:new(f.draw 'Quit2', f.quit), GameCell:new(f.empty, f.Click), 
+	{GameCell:new(f.draw 'Back', f.back), GameCell:new(f.empty, f.Click),
 	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
 	GameCell:new(f.draw 'Restart', f.retry)} 
 }

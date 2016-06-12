@@ -26,8 +26,8 @@ function GameCell:new(drawIn, onclick, drawMove)
 		gamecell.drawIn = function () end
 	end
 
-	function gamecell:onClick(grid)
-		return (onclick or function (a,b) return nil end)(grid, self)
+	function gamecell:onClick(overlay, grid)
+		return (onclick or function (a,b) return nil end)(overlay, grid, self)
 	end
 
 	setmetatable(gamecell, {__index = self})

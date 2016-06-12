@@ -68,5 +68,5 @@ Cells = {
 
 	{GameCell:new(f.draw 'Quit', f.quit), GameCell:new(), 
 	GameCell:new(), GameCell:new(), 
-	GameCell:new(f.draw 'Back', f.retry)} 
+	GameCell:new(f.draw 'Back', f.back)}
 }

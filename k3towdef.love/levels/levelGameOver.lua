@@ -47,7 +47,7 @@ Cells = {
 	GameCell:new(), GameCell:new(), 
 	GameCell:new()},
 
-	{GameCell:new(f.draw 'Quit2', f.quit), GameCell:new(), 
+	{GameCell:new(f.draw 'Back', f.back), GameCell:new(),
 	GameCell:new(), GameCell:new(), 
 	GameCell:new(f.draw 'Restart', f.retry)} 
 }
