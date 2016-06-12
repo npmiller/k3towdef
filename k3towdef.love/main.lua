@@ -37,7 +37,13 @@ function love.keypressed(key, unicode)
 		grid:updateSize()
 	end
 	if key == "escape" then
-		grid.focus = false
+		if grid.focus then
+			grid.focus = false
+		elseif grid.name ~= 'Welcome' then
+			grid = Grid:load 'Welcome'
+		else
+			love.quitApplication()
+		end
 	end
 	if key == "q" then
 		love.quitApplication()

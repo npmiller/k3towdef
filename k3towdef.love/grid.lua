@@ -21,6 +21,7 @@ function Grid:load(base)
 	local level = loadLevel('levels/level' .. base)
 
 	local grid = {
+		name = base,
 		cells = level.Cells,
 		player = level.player,
 		--img = graphics.newImage(level.img),
