@@ -12,6 +12,8 @@ local         defs = require 'design/defs'
 local P = {}
 setfenv(1, P)
 
+m.playMusic 'musix-rm.mod'
+
 local function click(level)
 	return function(grid)
 		return Grid:load(level)

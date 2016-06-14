@@ -17,7 +17,6 @@ end
 function love.load()
 	grid = Grid:load 'Welcome'
 	overlay = nil
-	m.playMusic 'musix-rm.mod'
 	grid:updateSize()
 end
 

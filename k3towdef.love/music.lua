@@ -3,15 +3,20 @@ local audio = love.audio
 module 'music'
 
 local paused = false
+local source = ''
 
 function playMusic(mus)
-	audio.stop()
+	if mus ~= source then
+		audio.stop()
 
-	local music = audio.newSource("res/snd/" .. mus, 'stream')
-	music:setLooping(true)
-	audio.play(music)
-	if paused then
-		audio.pause()
+		local music = audio.newSource("res/snd/" .. mus, 'stream')
+		music:setLooping(true)
+		audio.play(music)
+		if paused then
+			audio.pause()
+		end
+
+		source = mus
 	end
 end
 
