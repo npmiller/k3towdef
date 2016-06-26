@@ -86,9 +86,8 @@ function love.mousepressed(x,y,button,istouch)
 			end
 			layer.focus = false
 		else
-			layer.cells[yg][xg]:onClick(layer)
+			layer.focus = layer.cells[yg][xg]:onClick(layer)
 			layer.focused = { x = xg, y = yg }
-			layer.focus = true
 		end
 	elseif button == 2 then
 		layer.focus = false
@@ -96,7 +95,7 @@ function love.mousepressed(x,y,button,istouch)
 end
 
 function love.mousereleased(x, y, button, istouch)
-	if istouch and button == 1 and overlay == nil then
+	if istouch and button == 1 and overlay == nil and grid.focus then
 		local cell = grid[grid.focused]
 		if cell.drawMouse ~= nil then
 			xg = math.ceil(x / grid.cells[1][1].width)
@@ -106,9 +105,8 @@ function love.mousereleased(x, y, button, istouch)
 			if xg == 0 then xg = 1 end
 			if yg == 0 then yg = 1 end
 
-			grid.cells[yg][xg]:onClick(grid)
+			grid.focus = grid.cells[yg][xg]:onClick(grid)
 			grid.focused = { x = xg, y = yg }
-			grid.focus = true
 		end
 	end
 end

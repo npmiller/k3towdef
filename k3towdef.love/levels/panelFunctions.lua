@@ -6,6 +6,7 @@ local font = love.graphics.newFont 'res/DejaVuSans.ttf'
 local f = {}
 
 function f.empty(player, panelCell)
+	return false
 end
 
 function f.drawInfo(player, panelCell)
@@ -131,6 +132,7 @@ function f.FreezeMouse(panelCell) f.drawMouse(panelCell,'freezetower' ) end
 function f.setTowerType(type)
 	return function(grid, self)
 		grid.towerType = type
+		return true
 	end
 end
 

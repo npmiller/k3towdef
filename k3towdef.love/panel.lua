@@ -14,7 +14,7 @@ function PanelCell:new(drawIn, player, onclick, drawMouse, drawMove)
 	}
 	function panelcell:onClick(grid)
 		grid.towerType = "Cell"
-		onclick(grid, self)
+		return onclick(grid, self)
 	end
 
 	setmetatable(panelcell, {__index = self})

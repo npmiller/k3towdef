@@ -10,6 +10,8 @@ function Tower:new()
 end
 
 function Tower:onClick()
+	-- towers grab focus
+	return true
 end
 
 function Tower:updateSize()
