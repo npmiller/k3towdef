@@ -65,7 +65,7 @@ function Enemy:update(dt)
 		self.position.y = self.position.y + self.direction.y
 
 		self.progress = 0
-		self.direction = self.grid.cells[self.position.y][self.position.x]:move()
+		self.direction = self.grid[self.position]:move()
 		if self.direction == "stop" then
 			remove(self.grid.enemies, self.i)
 			self.ingame = false

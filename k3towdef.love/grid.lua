@@ -7,6 +7,10 @@ local         Path = (require 'path').Path
 local         defs = require 'design/defs'
 local         next = next
 local       insert = table.insert
+local         type = type
+local       rawget = rawget
+local       rawset = rawset
+local getmetatable = getmetatable
 
 local function loadLevel(name)
 	package.loaded[name] = nil
@@ -15,7 +19,28 @@ end
 
 module 'grid'
 
-Grid = {}
+Grid = {
+	__index = function (table, key)
+		if type(key) == 'table' then
+			return table.cells[key.y][key.x]
+		else
+			return rawget(table, key) or
+			       rawget(getmetatable(table), key)
+		end
+	end,
+	__newindex = function (table, key, value)
+		if type(key) == 'table' then
+			table.cells[key.y][key.x] = value
+			local cell = table.cells[key.y][key.x]
+			cell:updateSize()
+			graphics.setCanvas(table.canvas)
+			cell:draw()
+			graphics.setCanvas()
+		else
+			rawset(table, key, value)
+		end
+	end
+}
 
 function Grid:load(base)
 	local level = loadLevel('levels/level' .. base)
@@ -39,16 +64,14 @@ function Grid:load(base)
 		generators = {},
 	}
 
-	setmetatable(grid, {__index = self})
+	setmetatable(grid, self)
 
-	for y, line in ipairs(grid.cells) do
-		for x, cell in ipairs(line) do
-			if cell.dynamic then
-				insert(grid.dynamicCells, cell)
-			end
-			if cell.nextWave then
-				insert(grid.generators, cell)
-			end
+	for _, cell in grid:range() do
+		if cell.dynamic then
+			insert(grid.dynamicCells, cell)
+		end
+		if cell.nextWave then
+			insert(grid.generators, cell)
 		end
 	end
 
@@ -62,16 +85,45 @@ function Grid:load(base)
 	return grid
 end
 
+-- next() for cells
+local next_cell = function (t, k)
+	local key
+	if t == nil then
+		return nil, nil
+	end
+
+	if k == nil then
+		key = {x = 1, y = 1}
+		return key, t[key]
+	end
+
+	if k.y == #t.cells then
+		if k.x == #t.cells[1] then
+			return nil, nil
+		else
+			key = {y = 1, x = k.x + 1}
+		end
+	else
+		key = {y = k.y + 1, x = k.x}
+	end
+
+	return key, t[key]
+end
+
+-- loop over the cells of the grid
+function Grid:range()
+	return next_cell, self
+end
+
 function Grid:drawCanvas()
 	graphics.reset()
 	self.canvas = graphics.newCanvas(self.width, self.height)
 	graphics.setCanvas(self.canvas)
 	graphics.clear()
 	self:gridDraw()
-	for y, line in ipairs(self.cells) do
-		for x, cell in ipairs(line) do
-			cell:draw()
-		end
+
+	for _, cell in self:range() do
+		cell:draw()
 	end
 	graphics.setCanvas()
 end
@@ -83,14 +135,12 @@ function Grid:updateSize()
 	local width = self.width / #(self.cells[1])
 	local height = self.height / #self.cells
 
-	for y, line in ipairs(self.cells) do
-		for x in ipairs(line) do
-			self.cells[y][x].x = x
-			self.cells[y][x].y = y
-			self.cells[y][x].width = width
-			self.cells[y][x].height = height
-			self.cells[y][x].grid = self
-		end
+	for coord, cell in self:range() do
+		cell.x = coord.x
+		cell.y = coord.y
+		cell.width = width
+		cell.height = height
+		cell.grid = self
 	end
 	for i, tower in ipairs(self.towers) do
 		tower:updateSize()
@@ -104,10 +154,8 @@ function Grid:update(dt)
 		enemy.i = i
 		enemy:update(dt)
 	end
-	for y, line in ipairs(self.cells) do
-		for x, cell in ipairs(line) do
-			self.cells[y][x]:update(dt)
-		end
+	for _, cell in self:range() do
+		cell:update(dt)
 	end
 	for i, projectile in ipairs(self.projectiles) do
 		projectile:update(dt, i)

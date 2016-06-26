@@ -49,13 +49,9 @@ function Tower:drawRange()
 	graphics.pop()
 end
 
-function Tower:place(coord,grid)
-	if grid.cells[coord.y][coord.x].constructible and grid.player:buy(grid.towerType) then
-		grid.cells[coord.y][coord.x] = self:new(grid.cells[coord.y][coord.x],grid)
-		grid.cells[coord.y][coord.x]:updateSize()
-		graphics.setCanvas(grid.canvas)
-		grid.cells[coord.y][coord.x]:draw()
-		graphics.setCanvas()
+function Tower:place(coord, grid)
+	if grid[coord].constructible and grid.player:buy(grid.towerType) then
+		grid[coord] = self:new(grid[coord], grid)
 	end
 end
 
@@ -63,7 +59,7 @@ function Tower:isInRange(x,y)
 	return
 		x ~= nil and
 		y ~= nil and
-		(x - self.x) ^ 2 + (y - self.y) ^ 2 <= self.radius 
+		(x - self.x) ^ 2 + (y - self.y) ^ 2 <= self.radius
 end
 
 function Tower:update(dt)

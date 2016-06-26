@@ -24,7 +24,7 @@ function basicProjectile:new(tower, enemy, grid)
 end
 
 function basicProjectile:update(dt, i)
-	self.x = self.x + (self.xe - self.xi) / 7 
+	self.x = self.x + (self.xe - self.xi) / 7
 	self.y = self.y + (self.ye - self.yi) / 7
 
 	for j, enemy in ipairs(self.grid.enemies) do

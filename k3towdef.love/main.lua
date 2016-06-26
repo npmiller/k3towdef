@@ -119,17 +119,12 @@ function love.draw()
 	grid:draw()
 
 	if grid.focus then
-		local drawLine = grid.cells[grid.focused.y][grid.focused.x].drawMouse ~= nil
+		local drawLine = grid[grid.focused].drawMouse ~= nil
 
 		if drawLine then
-			grid.cells[grid.focused.y][grid.focused.x]:drawMouse()
+			grid[grid.focused]:drawMouse()
 		end
-		grid.cells[grid.focused.y][grid.focused.x]:drawRange()
-	end
-	for y, line in ipairs(grid.cells) do
-		for x in ipairs(line) do
-			grid.cells[y][x].drawLine = drawLine
-		end
+		grid[grid.focused]:drawRange()
 	end
 
 	if overlay ~= nil then
