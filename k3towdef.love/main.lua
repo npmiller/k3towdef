@@ -59,6 +59,10 @@ function love.resize()
 end
 
 function love.mousepressed(x,y,button,istouch)
+	if button == 1 and m.click(x, y) then
+		return nil
+	end
+
 	local layer
 	-- Figure out on which layer to apply the click
 	if overlay ~= nil then
@@ -127,6 +131,7 @@ function love.draw()
 	if overlay ~= nil then
 		overlay:draw()
 	end
+	m.button(grid.mute.x, grid.cells[1][1].width, grid.mute.y, grid.cells[1][1].height)
 end
 
 function love.update(dt)

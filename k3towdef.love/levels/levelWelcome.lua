@@ -63,4 +63,4 @@ local Cells = {
 	GameCell:new(), GameCell:new(), levelChoice 'Help' }
 }
 
-return { Cells = Cells, gridDraw = gridDraw, player = player }
+return { Cells = Cells, gridDraw = gridDraw, player = player, mute = {x = 5, y = 1}}

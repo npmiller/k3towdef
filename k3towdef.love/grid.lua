@@ -49,6 +49,7 @@ function Grid:load(base)
 		canvas = canvas,
 		dynamicCells = {},
 		generators = {},
+		mute = {x = level.mute.x, y = level.mute.y},
 	}
 
 	setmetatable(grid, self)

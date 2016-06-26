@@ -47,4 +47,4 @@ local Cells = {
 	GameCell:new(f.draw 'Restart', f.retry)}
 }
 
-return { Cells = Cells, gridDraw = gridDraw, player = player }
+return { Cells = Cells, gridDraw = gridDraw, player = player, mute = {x = 5, y = 1}}

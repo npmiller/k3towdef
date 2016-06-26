@@ -89,4 +89,4 @@ local Cells = {
 	Path:new(l.left), Path:new(l.left), Path:new(l.left), Cell:new()}
 }
 
-return { Cells = Cells, gridDraw = gridDraw, player = player }
+return { Cells = Cells, gridDraw = gridDraw, player = player, mute = {x = 10, y = 10}}

@@ -66,4 +66,4 @@ local Cells = {
 	GameCell:new(f.draw 'Back', f.back)}
 }
 
-return { Cells = Cells, gridDraw = gridDraw }
+return { Cells = Cells, gridDraw = gridDraw, mute = {x = 5, y = 1}}
