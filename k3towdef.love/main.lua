@@ -1,5 +1,5 @@
 local            defs = require 'design/defs'
-local            Grid = (require 'grid').Grid
+local            Grid = require 'grid'
 local      fullscreen = defs.fullscreen
 local               m = require 'music'
 local          ipairs = ipairs
@@ -98,7 +98,7 @@ end
 
 function love.mousereleased(x, y, button, istouch)
 	if istouch and button == 1 and overlay == nil then
-		local cell = grid.cells[grid.focused.y][grid.focused.x]
+		local cell = grid[grid.focused]
 		if cell.drawMouse ~= nil then
 			xg = math.ceil(x / grid.cells[1][1].width)
 			yg = math.ceil(y / grid.cells[1][1].height)

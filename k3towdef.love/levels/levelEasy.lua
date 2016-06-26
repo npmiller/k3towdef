@@ -1,21 +1,17 @@
 local              l = require 'levels/levels'
-local           Cell = (require 'cell').Cell
-local           Path = (require 'path').Path
-local      PanelCell = (require 'panel').PanelCell
-local EnemyGenerator = (require 'enemygenerator').EnemyGenerator
-local         Player = (require 'player').Player
+local           Cell = require 'cell'
+local           Path = require 'path'
+local      PanelCell = require 'panel'
+local EnemyGenerator = require 'enemygenerator'
+local         Player = require 'player'
 local              f = require 'levels/panelFunctions'
 local              m = require 'music'
 local     graphics = love.graphics
 local         defs = require 'design/defs'
-local random = math.random
-
-local P = {}
-setfenv(1, P)
 
 m.playMusic 'apoplexy.mod'
 
-conf = {
+local conf = {
 	life = 15,
 	money = 20,
 	prices = {
@@ -27,11 +23,11 @@ conf = {
 	}
 }
 
-player = Player:new(conf)
+local player = Player:new(conf)
 
-bg = graphics.newImage("levels/img/grass.jpeg")
+local bg = graphics.newImage("levels/img/grass.jpeg")
 
-function gridDraw(self)
+local function gridDraw(self)
 	graphics.draw(
 		bg,
 		0,
@@ -55,43 +51,43 @@ local waves = {
 	{speed = 4, life = 60, frequency = 4, enemyNumber = 5},
 }
 
-Cells = {
-	{EnemyGenerator:new(l.down, waves, player), Cell:new(), Cell:new(), Cell:new(), 
+local Cells = {
+	{EnemyGenerator:new(l.down, waves, player), Cell:new(), Cell:new(), Cell:new(),
 	Cell:new(), Cell:new(), Cell:new(), Cell:new(), Cell:new(),
 	PanelCell:new(nil, player, f.empty, nil, f.drawInfo)},
 
-	{Path:new(l.right), Path:new(l.right), Path:new(l.down), Cell:new(), Path:new(l.right), 
+	{Path:new(l.right), Path:new(l.right), Path:new(l.down), Cell:new(), Path:new(l.right),
 	Path:new(l.right), Path:new(l.right), Path:new(l.down), Cell:new(),
 	PanelCell:new(f.drawbasicTower, player, f.setTowerType "basicTower", f.basicMouse)},
 
-	{Cell:new(), Cell:new(),  Path:new(l.down), Cell:new(),  Path:new(l.up), Cell:new(), 
+	{Cell:new(), Cell:new(),  Path:new(l.down), Cell:new(),  Path:new(l.up), Cell:new(),
 	Cell:new(), Path:new(l.down), Cell:new(),
 	PanelCell:new(f.drawBeamTower, player, f.setTowerType "BeamTower", f.BeamMouse)},
 
-	{Cell:new(), Path:new(l.down), Path:new(l.left), Cell:new(), Path:new(l.up), Cell:new(), 
+	{Cell:new(), Path:new(l.down), Path:new(l.left), Cell:new(), Path:new(l.up), Cell:new(),
 	Cell:new(),  Path:new(l.down), Cell:new(),
 	PanelCell:new(f.drawSlowTower, player, f.setTowerType "SlowTower", f.SlowMouse)},
 
-	{Cell:new(), Path:new(l.down), Cell:new(), Cell:new(),  Path:new(l.up), Cell:new(), 
+	{Cell:new(), Path:new(l.down), Cell:new(), Cell:new(),  Path:new(l.up), Cell:new(),
 	Cell:new(), Path:new(l.down), Cell:new(),
 	PanelCell:new(f.drawFreezeTower, player, f.setTowerType "FreezeTower", f.FreezeMouse)},
 
-	{Cell:new(), Path:new(l.down), Cell:new(), Cell:new(),  Path:new(l.up), Cell:new(), 
+	{Cell:new(), Path:new(l.down), Cell:new(), Cell:new(),  Path:new(l.up), Cell:new(),
 	Cell:new(),  Path:new(l.down), Cell:new(),
 	PanelCell:new(f.drawSplashTower, player, f.setTowerType "SplashTower", f.SplashMouse)},
 
-	{Cell:new(), Path:new(l.right),  Path:new(l.right), Path:new(l.right), Path:new(l.up), 
+	{Cell:new(), Path:new(l.right),  Path:new(l.right), Path:new(l.right), Path:new(l.up),
 	Cell:new(), Cell:new(),  Path:new(l.down), Cell:new(),
 	PanelCell:new(f.draw 'nextwave', player, f.nextWaveClick, nil)},
 
-	{Cell:new(), Cell:new(), Cell:new(), Cell:new(), Cell:new(), Cell:new(), Cell:new(),  
+	{Cell:new(), Cell:new(), Cell:new(), Cell:new(), Cell:new(), Cell:new(), Cell:new(),
 	Path:new(l.right), Path:new(l.down), Cell:new()},
 
-	{Cell:new(), Path:new(l.down),  Path:new(l.left), Path:new(l.left), Path:new(l.left), 
+	{Cell:new(), Path:new(l.down),  Path:new(l.left), Path:new(l.left), Path:new(l.left),
 	Path:new(l.left), Cell:new(), Cell:new(), Path:new(l.down), Cell:new()},
 
-	{Cell:new(), Path:new(l.stop), Cell:new(), Cell:new(), Cell:new(), Path:new(l.up), 
+	{Cell:new(), Path:new(l.stop), Cell:new(), Cell:new(), Cell:new(), Path:new(l.up),
 	Path:new(l.left), Path:new(l.left), Path:new(l.left), Cell:new()}
 }
 
-return P
+return { Cells = Cells, gridDraw = gridDraw, player = player }

@@ -2,8 +2,8 @@ local     graphics = love.graphics
 local       ipairs = ipairs
 local        pairs = pairs
 local setmetatable = setmetatable
-local         Cell = (require 'cell').Cell
-local         Path = (require 'path').Path
+local         Cell = require 'cell'
+local         Path = require 'path'
 local         defs = require 'design/defs'
 local         next = next
 local       insert = table.insert
@@ -17,9 +17,7 @@ local function loadLevel(name)
 	return require(name)
 end
 
-module 'grid'
-
-Grid = {
+local Grid = {
 	__index = function (table, key)
 		if type(key) == 'table' then
 			return table.cells[key.y][key.x]
@@ -206,3 +204,5 @@ function Grid:draw()
 		explosion:draw()
 	end
 end
+
+return Grid

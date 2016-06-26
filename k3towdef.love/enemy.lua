@@ -7,10 +7,7 @@ local       remove = table.remove
 local        floor = math.floor
 local design = require 'design/design'
 
---- Module enemy, défini l'objet enenmi
-module 'enemy'
-
-Enemy = {}
+local Enemy = {}
 
 --- Fonction qui crée un objet ennemi
 --@param life la vie de l'ennemi créé
@@ -99,3 +96,5 @@ end
 function Enemy:draw()
 	design.enemyDraw(self)
 end
+
+return Enemy

@@ -1,5 +1,5 @@
 local         defs = require 'design/defs'
-local        Tower = (require 'tower').Tower
+local        Tower = require 'tower'
 local     graphics = love.graphics
 local       ipairs = ipairs
 local setmetatable = setmetatable
@@ -11,10 +11,7 @@ local       random = math.random
 local         sqrt = math.sqrt
 local       arctan = math.atan2
 
-module 'towers/beamtower'
-
-BeamTower = Tower:new()
-
+local BeamTower = Tower:new()
 
 function BeamTower:new(Cell, grid)
 	local beamtower = {
@@ -86,3 +83,5 @@ function BeamTower:update(dt)
 		self.locked = findEnemy()
 	end
 end
+
+return BeamTower

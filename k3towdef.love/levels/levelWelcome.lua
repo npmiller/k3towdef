@@ -1,16 +1,13 @@
 local              l = require 'levels/levels'
-local           Cell = (require 'cell').Cell
-local           Path = (require 'path').Path
-local      GameCell = (require 'gamecell').GameCell
-local EnemyGenerator = (require 'enemygenerator').EnemyGenerator
+local           Cell = require 'cell'
+local           Path = require 'path'
+local      GameCell = require 'gamecell'
+local EnemyGenerator = require 'enemygenerator'
 local              f = require 'levels/panelFunctions'
 local              m = require 'music'
-local           Grid = (require 'grid').Grid
+local           Grid = require 'grid'
 local     graphics = love.graphics
 local         defs = require 'design/defs'
-
-local P = {}
-setfenv(1, P)
 
 m.playMusic 'musix-rm.mod'
 
@@ -24,9 +21,9 @@ local function levelChoice(level)
 	return GameCell:new(f.draw(level), click(level))
 end
 
-bg = graphics.newImage("levels/img/background.jpeg")
+local bg = graphics.newImage("levels/img/background.jpeg")
 
-function gridDraw(self)
+local function gridDraw(self)
 	graphics.draw(
 		bg,
 		0,
@@ -37,33 +34,33 @@ function gridDraw(self)
 		)
 end
 
-Cells = {
-	{GameCell:new(), GameCell:new(f.draw 'K3TowDef'), 
-	GameCell:new(), GameCell:new(), 
+local Cells = {
+	{GameCell:new(), GameCell:new(f.draw 'K3TowDef'),
+	GameCell:new(), GameCell:new(),
 	GameCell:new()},
 
-	{GameCell:new(), GameCell:new(), 
-	GameCell:new(), GameCell:new(), 
+	{GameCell:new(), GameCell:new(),
+	GameCell:new(), GameCell:new(),
 	GameCell:new()},
 
-	{GameCell:new(f.draw 'between'), levelChoice 'Easy', 
-	GameCell:new(f.draw 'between'), levelChoice 'Medium', 
+	{GameCell:new(f.draw 'between'), levelChoice 'Easy',
+	GameCell:new(f.draw 'between'), levelChoice 'Medium',
 	GameCell:new(f.draw 'between')},
 
-	{GameCell:new(), GameCell:new(), 
-	GameCell:new(), GameCell:new(), 
+	{GameCell:new(), GameCell:new(),
+	GameCell:new(), GameCell:new(),
 	GameCell:new()},
 
-	{GameCell:new(f.draw 'between'), levelChoice 'Hard', 
-	GameCell:new(f.draw 'between'), levelChoice 'Insane', 
+	{GameCell:new(f.draw 'between'), levelChoice 'Hard',
+	GameCell:new(f.draw 'between'), levelChoice 'Insane',
 	GameCell:new(f.draw 'between')},
 
-	{GameCell:new(), GameCell:new(), 
-	GameCell:new(), GameCell:new(), 
+	{GameCell:new(), GameCell:new(),
+	GameCell:new(), GameCell:new(),
 	GameCell:new()},
 
-	{GameCell:new(f.draw "Quit", f.quit), GameCell:new(), 
-	GameCell:new(), GameCell:new(), levelChoice 'Help' } 
+	{GameCell:new(f.draw "Quit", f.quit), GameCell:new(),
+	GameCell:new(), GameCell:new(), levelChoice 'Help' }
 }
 
-return P
+return { Cells = Cells, gridDraw = gridDraw, player = player }

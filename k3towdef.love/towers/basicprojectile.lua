@@ -6,9 +6,7 @@ local       ipairs = ipairs
 local          min = math.min
 local design = require 'design/design'
 
-module 'towers/basicprojectile'
-
-basicProjectile = {}
+local basicProjectile = {}
 
 function basicProjectile:new(tower, enemy, grid)
 	local basicprojectile = {
@@ -45,3 +43,4 @@ function basicProjectile:draw()
 	design.basicProjectileDraw(self)
 end
 
+return basicProjectile

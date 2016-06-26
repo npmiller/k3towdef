@@ -1,11 +1,11 @@
 local audio = love.audio
 
-module 'music'
+local m = {}
 
 local paused = false
 local source = ''
 
-function playMusic(mus)
+function m.playMusic(mus)
 	if mus ~= source then
 		audio.stop()
 
@@ -20,7 +20,7 @@ function playMusic(mus)
 	end
 end
 
-function toggle()
+function m.toggle()
 	if paused then
 		audio.resume()
 	else
@@ -28,3 +28,5 @@ function toggle()
 	end
 	paused = not paused
 end
+
+return m

@@ -1,13 +1,10 @@
-local         Cell = (require 'cell').Cell
+local         Cell = require 'cell'
 local design = require 'design/design'
 local         defs = require 'design/defs'
 local     graphics = love.graphics
 local      require = require
 local       ipairs = ipairs
 local setmetatable = setmetatable
-
---- Module qui défini une case du chemin sur lequel les ennemis vont évoluer
-module 'path'
 
 Path = Cell:new()
 
@@ -36,3 +33,5 @@ function Path:draw()
 		--graphics.getHeight()/defs.height
 	--)
 end
+
+return Path

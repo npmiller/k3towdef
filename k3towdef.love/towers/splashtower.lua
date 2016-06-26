@@ -1,16 +1,13 @@
 local             defs = require 'design/defs'
-local            Tower = (require 'tower').Tower
-local SplashProjectile = (require 'towers/splashprojectile').SplashProjectile
+local            Tower = require 'tower'
+local SplashProjectile = require 'towers/splashprojectile'
 local           ipairs = ipairs
 local     setmetatable = setmetatable
 local           insert = table.insert
 local graphics = love.graphics
 local design = require 'design/design'
 
-module 'towers/splashtower'
-
-SplashTower = Tower:new()
-
+local SplashTower = Tower:new()
 
 function SplashTower:new(Cell, grid)
 	local splashtower = {
@@ -47,3 +44,5 @@ end
 function SplashTower:draw()
 	design.SplashTowerDraw(self)
 end
+
+return SplashTower

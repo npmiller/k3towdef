@@ -1,5 +1,5 @@
 local      require = require
-local         defs = (require 'design/defs')
+local         defs = require 'design/defs'
 local     graphics = love.graphics
 local       ipairs = ipairs
 local setmetatable = setmetatable
@@ -8,9 +8,7 @@ local          min = math.min
 local          max = math.max
 local     tostring = tostring
 
-module 'tower'
-
-Tower = {constructible = false, dynamic = false}
+local Tower = {constructible = false, dynamic = false}
 
 function Tower:new()
 	local tower = {drawParameters = {}}
@@ -27,7 +25,7 @@ function Tower:updateSize()
 	self.radius = (self.range + 1 / 2) ^ 2
 	self.drawParameters.xscale = max(1, self.width / self.height)
 	self.drawParameters.yscale = max(1, self.height / self.width)
- 	self.drawParameters.minSide = min(self.width, self.height)
+	self.drawParameters.minSide = min(self.width, self.height)
 	
 end
 
@@ -64,3 +62,5 @@ end
 
 function Tower:update(dt)
 end
+
+return Tower

@@ -1,5 +1,5 @@
-local         Grid = (require 'grid').Grid
-local         Cell = (require 'cell').Cell
+local         Grid = require 'grid'
+local         Cell = require 'cell'
 local         defs = require 'design/defs'
 local         love = love
 local     graphics = love.graphics
@@ -7,9 +7,7 @@ local setmetatable = setmetatable
 local       ipairs = ipairs
 local       insert = table.insert
 
-module 'panel'
-
-PanelCell = Cell:new()
+local PanelCell = Cell:new()
 
 function PanelCell:new(drawIn, player, onclick, drawMouse, drawMove)
 	local panelcell = {
@@ -57,3 +55,5 @@ function PanelCell:draw()
 	end
 	self.drawIn(self.player, self)
 end
+
+return PanelCell

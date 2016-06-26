@@ -1,19 +1,14 @@
 local              l = require 'levels/levels'
-local           Cell = (require 'cell').Cell
-local           Path = (require 'path').Path
-local       GameCell = (require 'gamecell').GameCell
-local EnemyGenerator = (require 'enemygenerator').EnemyGenerator
+local           Cell = require 'cell'
+local           Path = require 'path'
 local              f = require 'levels/panelFunctions'
 local              m = require 'music'
 local     graphics = love.graphics
 local         defs = require 'design/defs'
 
-local P = {}
-setfenv(1, P)
-
 m.playMusic 'musix-rm.mod'
 
-function gridDraw(self)
+local function gridDraw(self)
 	graphics.setColor(0, 0, 0, 128)
 	graphics.rectangle(
 		'fill', 0, 0,
@@ -22,34 +17,34 @@ function gridDraw(self)
 		)
 end
 
-Cells = {
-	{GameCell:new(f.empty, f.Click), GameCell:new(f.draw 'K3TowDef', f.Click), 
-	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
+local Cells = {
+	{GameCell:new(f.empty, f.Click), GameCell:new(f.draw 'K3TowDef', f.Click),
+	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
 	GameCell:new(f.empty, f.Click)},
 
-	{GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
-	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
+	{GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
+	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
 	GameCell:new(f.empty, f.Click)},
 
-	{GameCell:new(f.draw 'victory', f.Click), GameCell:new(f.empty, f.Click), 
-	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
+	{GameCell:new(f.draw 'victory', f.Click), GameCell:new(f.empty, f.Click),
+	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
 	GameCell:new(f.empty, f.Click)},
 
-	{GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
-	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
+	{GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
+	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
 	GameCell:new(f.empty, f.Click)},
 
-	{GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
-	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
+	{GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
+	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
 	GameCell:new(f.empty, f.Click)},
 
-	{GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
-	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
+	{GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
+	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
 	GameCell:new(f.empty, f.Click)},
 
 	{GameCell:new(f.draw 'Back', f.back), GameCell:new(f.empty, f.Click),
-	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click), 
-	GameCell:new(f.draw 'Restart', f.retry)} 
+	GameCell:new(f.empty, f.Click), GameCell:new(f.empty, f.Click),
+	GameCell:new(f.draw 'Restart', f.retry)}
 }
 
-return P
+return { Cells = Cells, gridDraw = gridDraw, player = player }

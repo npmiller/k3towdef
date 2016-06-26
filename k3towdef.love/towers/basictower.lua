@@ -1,16 +1,13 @@
 local            defs = require 'design/defs'
-local basicProjectile = (require 'towers/basicprojectile').basicProjectile
-local           Tower = (require 'tower').Tower
+local basicProjectile = require 'towers/basicprojectile'
+local           Tower = require 'tower'
 local          ipairs = ipairs
 local    setmetatable = setmetatable
 local          insert = table.insert
 local        graphics = love.graphics
 local design = require 'design/design'
 
-module 'towers/basictower'
-
-basicTower = Tower:new()
-
+local basicTower = Tower:new()
 
 function basicTower:new(Cell, grid)
 	local basictower = {
@@ -27,6 +24,8 @@ function basicTower:new(Cell, grid)
 	}
 
 	setmetatable(basictower, {__index = self})
+
+	basictower.range = 1
 
 	insert(grid.towers, basictower)
 	return basictower
@@ -47,3 +46,5 @@ end
 function basicTower:draw()
 	design.basicTowerDraw(self)
 end
+
+return basicTower

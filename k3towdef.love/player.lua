@@ -1,12 +1,9 @@
 local setmetatable = setmetatable
-local   basicTower = (require 'towers/basictower').basicTower
-local    BeamTower = (require 'towers/beamtower').BeamTower
-local    SlowTower = (require 'towers/slowtower').SlowTower
-local  SplashTower = (require 'towers/splashtower').SplashTower
-local  FreezeTower = (require 'towers/freezetower').FreezeTower
-
---- Module qui défini le joueur
-module 'player'
+local   basicTower = require 'towers/basictower'
+local    BeamTower = require 'towers/beamtower'
+local    SlowTower = require 'towers/slowtower'
+local  SplashTower = require 'towers/splashtower'
+local  FreezeTower = require 'towers/freezetower'
 
 Player = {}
 
@@ -51,3 +48,5 @@ end
 function Player:hit(d)
 	self.life = self.life - d
 end
+
+return Player

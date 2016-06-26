@@ -6,9 +6,7 @@ local       ipairs = ipairs
 local          min = math.min
 local design = require 'design/design'
 
-module 'towers/slowprojectile'
-
-SlowProjectile = {}
+local SlowProjectile = {}
 
 function SlowProjectile:new(tower, enemy, grid)
 	local slowprojectile = {
@@ -24,7 +22,7 @@ function SlowProjectile:new(tower, enemy, grid)
 end
 
 function SlowProjectile:update(dt, i)
-	self.x = self.x + (self.xe - self.xi)/5 
+	self.x = self.x + (self.xe - self.xi)/5
 	self.y = self.y + (self.ye - self.yi)/5
 
 	for j, enemy in ipairs(self.grid.enemies) do
@@ -45,3 +43,5 @@ end
 function SlowProjectile:draw()
 	design.SlowProjectileDraw(self)
 end
+
+return SlowProjectile

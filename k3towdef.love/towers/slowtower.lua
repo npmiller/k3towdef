@@ -1,15 +1,13 @@
 local           defs = require 'design/defs'
-local          Tower = (require 'tower').Tower
-local SlowProjectile = (require 'towers/slowprojectile').SlowProjectile
+local          Tower = require 'tower'
+local SlowProjectile = require 'towers/slowprojectile'
 local         ipairs = ipairs
 local   setmetatable = setmetatable
 local         insert = table.insert
 local       graphics = love.graphics
 local design = require 'design/design'
-module 'towers/slowtower'
 
-SlowTower = Tower:new()
-
+local SlowTower = Tower:new()
 
 function SlowTower:new(Cell, grid)
 	local slowtower = {
@@ -47,3 +45,5 @@ end
 function SlowTower:draw()
 	design.SlowTowerDraw(self)
 end
+
+return SlowTower

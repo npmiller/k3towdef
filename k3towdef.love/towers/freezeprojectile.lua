@@ -6,9 +6,7 @@ local       ipairs = ipairs
 local          min = math.min
 local design = require 'design/design'
 
-module 'towers/freezeprojectile'
-
-FreezeProjectile = {maxTimer = 0.2}
+local FreezeProjectile = {maxTimer = 0.2}
 
 function FreezeProjectile:new(tower, enemy, grid)
 	local freezeprojectile = {
@@ -45,3 +43,5 @@ end
 function FreezeProjectile:draw()
 	design.FreezeProjectileDraw(self)
 end
+
+return FreezeProjectile

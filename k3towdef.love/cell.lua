@@ -6,12 +6,11 @@ local setmetatable = setmetatable
 local         defs = require 'design/defs'
 local       design = require 'design/design'
 
-module 'cell'
 
 Cell = {}
 
 function Cell:new()
-	local cell = { 
+	local cell = {
 		constructible = true,
 		dynamic = false
 	}
@@ -29,8 +28,8 @@ end
 
 function Cell:onClick(grid)
 	if grid.towerType ~= "Cell" then
-		require('towers/' .. lower(grid.towerType))[grid.towerType]
-			:place({x = self.x, y = self.y}, grid)
+		local tower = require('towers/' .. lower(grid.towerType))
+		tower:place({x = self.x, y = self.y}, grid)
 	end
 
 	grid.towerType = "Cell"
@@ -43,3 +42,4 @@ function Cell:draw()
 	design.cellDraw(self)
 end
 
+return Cell

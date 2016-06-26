@@ -1,16 +1,13 @@
 local             defs = require 'design/defs'
-local            Tower = (require 'tower').Tower
-local FreezeProjectile = (require 'towers/freezeprojectile').FreezeProjectile
+local            Tower = require 'tower'
+local FreezeProjectile = require 'towers/freezeprojectile'
 local           ipairs = ipairs
 local     setmetatable = setmetatable
 local           insert = table.insert
 local         graphics = love.graphics
 local design = require 'design/design'
 
-module 'towers/freezetower'
-
-FreezeTower = Tower:new()
-
+local FreezeTower = Tower:new()
 
 function FreezeTower:new(Cell, grid)
 	local freezetower = {
@@ -48,3 +45,5 @@ end
 function FreezeTower:draw()
 	design.FreezeTowerDraw(self)
 end
+
+return FreezeTower

@@ -4,17 +4,17 @@ local    mouse = love.mouse
 local   ipairs = ipairs
 local      max = math.max
 local      min = math.min
-local     Grid = (require 'grid').Grid
+local     Grid = require 'grid'
 local     love = love
-
-module 'levels/panelFunctions'
 
 local font = graphics.newFont 'res/DejaVuSans.ttf'
 
-function empty(player, panelCell)
+local f = {}
+
+function f.empty(player, panelCell)
 end
 
-function drawInfo(player, panelCell)
+function f.drawInfo(player, panelCell)
 	graphics.setColor(255, 255, 255)
 	graphics.setFont(font)
 	graphics.print(player.life .. " ♥\n"..player.money .. " $\n" .. player.waveNumber .. "/" .. player.totWave,
@@ -25,21 +25,21 @@ function drawInfo(player, panelCell)
 		graphics.getHeight() / defs.height)
 end
 
-function nextWaveClick(grid)
+function f.nextWaveClick(grid)
 	grid:play()
 end
 
-function retry(overlay, grid)
+function f.retry(overlay, grid)
 	return Grid:load(grid.name)
 end
-function back()
+function f.back()
 	return Grid:load("Welcome")
 end
-function quit()
+function f.quit()
 	return love.quitApplication()
 end
 
-function draw(image)
+function f.draw(image)
 	local img = graphics.newImage("design/img/"..image..".png")
 	
 	return function(player, panelCell)
@@ -53,7 +53,7 @@ function draw(image)
 			end
 end
 	
-function drawTower(image, price)
+function f.drawTower(image, price)
 	local img = graphics.newImage("design/img/"..image..".png")
 	
 	return function(player,panelCell)
@@ -80,20 +80,20 @@ function drawTower(image, price)
 		end
 end
 
-local function towerDrawer(style)
+function f.towerDrawer(style)
 	return function(player, panelCell)
-		drawTower(player, panelCell, style)
+		f.drawTower(player, panelCell, style)
 	end
 end
 
-drawbasicTower = drawTower('basictower', 10) 
-drawBeamTower = drawTower('beamtower', 15)
-drawSlowTower = drawTower('slowtower', 25)
-drawFreezeTower = drawTower('freezetower', 30)
-drawSplashTower = drawTower('splashtower', 35)
+f.drawbasicTower = f.drawTower('basictower', 10)
+f.drawBeamTower = f.drawTower('beamtower', 15)
+f.drawSlowTower = f.drawTower('slowtower', 25)
+f.drawFreezeTower = f.drawTower('freezetower', 30)
+f.drawSplashTower = f.drawTower('splashtower', 35)
 
 
-function drawMouse(panelCell, image)
+function f.drawMouse(panelCell, image)
 	local x, y = mouse.getPosition()
 	local image = graphics.newImage("design/img/" .. image ..".png")
 	local width = panelCell.width
@@ -127,15 +127,17 @@ function drawMouse(panelCell, image)
 	graphics.pop()
 end
 
-function basicMouse(panelCell) drawMouse(panelCell, 'basictower') end
-function BeamMouse(panelCell) drawMouse(panelCell, 'beamtower') end
-function SlowMouse(panelCell) drawMouse(panelCell, 'slowtower') end
-function SplashMouse(panelCell) drawMouse(panelCell, 'splashtower') end
-function FreezeMouse(panelCell) drawMouse(panelCell,'freezetower' ) end
+function f.basicMouse(panelCell) f.drawMouse(panelCell, 'basictower') end
+function f.BeamMouse(panelCell) f.drawMouse(panelCell, 'beamtower') end
+function f.SlowMouse(panelCell) f.drawMouse(panelCell, 'slowtower') end
+function f.SplashMouse(panelCell) f.drawMouse(panelCell, 'splashtower') end
+function f.FreezeMouse(panelCell) f.drawMouse(panelCell,'freezetower' ) end
 
 
-function setTowerType(type)
+function f.setTowerType(type)
 	return function(grid, self)
 		grid.towerType = type
 	end
 end
+
+return f

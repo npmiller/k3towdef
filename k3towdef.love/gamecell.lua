@@ -1,15 +1,12 @@
-local         Grid = (require 'grid').Grid
-local         Cell = (require 'cell').Cell
-local         defs = (require 'design/defs')
+local         Grid = require 'grid'
+local         Cell = require 'cell'
+local         defs = require 'design/defs'
 local         love = love
 local     graphics = love.graphics
 local setmetatable = setmetatable
 local       ipairs = ipairs
 
---- Module qui défini une case faisant partie du panel de contrôles
-module 'gamecell'
-
-GameCell = Cell:new()
+local GameCell = Cell:new()
 
 --- Fonction permettant de créer une nouvelle case de panneau de contrôle
 --@param drawIn fonction déterminant ce qui doit être déssiné dans la case
@@ -52,3 +49,5 @@ end
 function GameCell:draw()
 	self.drawIn(self.player, self)
 end
+
+return GameCell

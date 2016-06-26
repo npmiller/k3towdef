@@ -5,9 +5,7 @@ local     graphics = love.graphics
 local       ipairs = ipairs
 local          min = math.min
 
-module 'towers/splashexplosion'
-
-SplashExplosion = {maxTimer = 0.3}
+local SplashExplosion = {maxTimer = 0.3}
 
 function SplashExplosion:new(splashprojectile, splashtower, grid)
 	local splashexplosion = {
@@ -32,9 +30,11 @@ end
 
 function SplashExplosion:draw()
 	graphics.setColor(0, 0, 0, 255 * (1 - self.timer / self.maxTimer))
-	graphics.circle('fill', 
+	graphics.circle('fill',
 		self.x * self.splashtower.width - (1 / 2) * self.splashtower.width,
 		self.y * self.splashtower.height - (1 / 2) * self.splashtower.height,
 		1.3 * min(self.splashtower.width, self.splashtower.height) * self.timer / self.maxTimer,
 		50)
 end
+
+return SplashExplosion

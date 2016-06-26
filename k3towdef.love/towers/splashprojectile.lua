@@ -4,12 +4,10 @@ local    setmetatable = setmetatable
 local        graphics = love.graphics
 local          ipairs = ipairs
 local             min = math.min
-local SplashExplosion = (require 'towers/splashexplosion').SplashExplosion
+local SplashExplosion = require 'towers/splashexplosion'
 local design = require 'design/design'
 
-module 'towers/splashprojectile'
-
-SplashProjectile = {}
+local SplashProjectile = {}
 
 function SplashProjectile:new(splashtower, enemy, grid)
 	local splashprojectile = {
@@ -50,3 +48,5 @@ end
 function SplashProjectile:draw()
 	design.SplashProjectileDraw(self)
 end
+
+return SplashProjectile

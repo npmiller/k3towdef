@@ -1,13 +1,11 @@
-local         Path = (require 'path').Path
-local        Enemy = (require 'enemy').Enemy
+local         Path = require 'path'
+local        Enemy = require 'enemy'
 local     graphics = love.graphics
 local setmetatable = setmetatable
 local         type = type
 local         next = next
 
-module 'enemygenerator'
-
-EnemyGenerator = Path:new()
+local EnemyGenerator = Path:new()
 
 function EnemyGenerator:new(move, waves)
 	local enemygenerator = Path:new(move)
@@ -62,3 +60,5 @@ function EnemyGenerator:update(dt)
 		self.lastEnemy = self.lastEnemy + dt
 	end
 end
+
+return EnemyGenerator
