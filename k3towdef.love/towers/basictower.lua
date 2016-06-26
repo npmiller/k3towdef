@@ -1,11 +1,7 @@
 local            defs = require 'design/defs'
 local basicProjectile = require 'towers/basicprojectile'
 local           Tower = require 'tower'
-local          ipairs = ipairs
-local    setmetatable = setmetatable
-local          insert = table.insert
-local        graphics = love.graphics
-local design = require 'design/design'
+local          design = require 'design/design'
 
 local basicTower = Tower:new()
 
@@ -27,7 +23,7 @@ function basicTower:new(Cell, grid)
 
 	basictower.range = 1
 
-	insert(grid.towers, basictower)
+	table.insert(grid.towers, basictower)
 	return basictower
 end
 

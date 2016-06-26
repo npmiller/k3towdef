@@ -1,11 +1,5 @@
-local         Grid = require 'grid'
-local         Cell = require 'cell'
-local         defs = require 'design/defs'
-local         love = love
-local     graphics = love.graphics
-local setmetatable = setmetatable
-local       ipairs = ipairs
-local       insert = table.insert
+local Cell = require 'cell'
+local defs = require 'design/defs'
 
 local PanelCell = Cell:new()
 
@@ -44,10 +38,10 @@ function PanelCell:update(dt)
 end
 
 function PanelCell:draw()
-	graphics.setLineWidth(1)
+	love.graphics.setLineWidth(1)
 	for i, rect in ipairs(defs.PanelStyle) do
-		graphics.setColor(rect.color)
-		graphics.rectangle(rect.mode,
+		love.graphics.setColor(rect.color)
+		love.graphics.rectangle(rect.mode,
 			(self.x - 1) * self.width,
 			(self.y - 1) * self.height,
 			self.width,

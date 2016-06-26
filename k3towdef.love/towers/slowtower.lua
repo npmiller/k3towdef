@@ -1,11 +1,7 @@
-local           defs = require 'design/defs'
 local          Tower = require 'tower'
 local SlowProjectile = require 'towers/slowprojectile'
-local         ipairs = ipairs
-local   setmetatable = setmetatable
-local         insert = table.insert
-local       graphics = love.graphics
-local design = require 'design/design'
+local           defs = require 'design/defs'
+local         design = require 'design/design'
 
 local SlowTower = Tower:new()
 
@@ -25,7 +21,7 @@ function SlowTower:new(Cell, grid)
 
 	setmetatable(slowtower, {__index = self})
 
-	insert(grid.towers, slowtower)
+	table.insert(grid.towers, slowtower)
 	return slowtower
 end
 

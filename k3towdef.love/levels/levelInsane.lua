@@ -6,8 +6,6 @@ local EnemyGenerator = require 'enemygenerator'
 local         Player = require 'player'
 local              f = require 'levels/panelFunctions'
 local              m = require 'music'
-local         random = math.random
-local     graphics = love.graphics
 local         defs = require 'design/defs'
 
 m.playMusic 'apoplexy.mod'
@@ -26,16 +24,16 @@ local conf = {
 
 local player = Player:new(conf)
 
-local bg = graphics.newImage("levels/img/grass.jpeg")
+local bg = love.graphics.newImage("levels/img/grass.jpeg")
 
 local function gridDraw(self)
-	graphics.draw(
+	love.graphics.draw(
 		bg,
 		0,
 		0,
 		0,
-		graphics.getWidth()/defs.width,
-		graphics.getHeight()/defs.height
+		love.graphics.getWidth()/defs.width,
+		love.graphics.getHeight()/defs.height
 		)
 end
 
@@ -49,11 +47,11 @@ local waves = {
 	{speed = 7, life = 20, frequency = 6, enemyNumber = 20},
 	{speed = 4, life = 30, frequency = 7, enemyNumber = 15},
 	{speed = 4, life = 80, frequency = 6, enemyNumber = 20},
-	{speed = function() return random(6) end, life = 100, frequency = 4, enemyNumber = 10},
+	{speed = function() return math.random(6) end, life = 100, frequency = 4, enemyNumber = 10},
 }
 
 local function randPath()
-	if random(2) == 2 then
+	if math.random(2) == 2 then
 		return l.left()
 	else
 		return l.right()

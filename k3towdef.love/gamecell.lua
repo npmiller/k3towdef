@@ -1,16 +1,7 @@
-local         Grid = require 'grid'
-local         Cell = require 'cell'
-local         defs = require 'design/defs'
-local         love = love
-local     graphics = love.graphics
-local setmetatable = setmetatable
-local       ipairs = ipairs
+local Cell = require 'cell'
 
 local GameCell = Cell:new()
 
---- Fonction permettant de créer une nouvelle case de panneau de contrôle
---@param drawIn fonction déterminant ce qui doit être déssiné dans la case
---@paramn onclick action effectuée lorsque l'on clique sur la case
 function GameCell:new(drawIn, onclick, drawMove)
 	local gamecell = {
 		constructible = false,
@@ -31,7 +22,7 @@ function GameCell:new(drawIn, onclick, drawMove)
 
 	if drawMove ~= nil then
 		gamecell.movingDrawIn = drawMove
-		insert(grid.movingDraw, gamecell)
+		table.insert(grid.movingDraw, gamecell)
 	else
 		gamecell.movingDrawIn = function () end
 	end

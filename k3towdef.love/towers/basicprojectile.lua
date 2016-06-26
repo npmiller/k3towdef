@@ -1,9 +1,3 @@
-local       insert = table.insert
-local       remove = table.remove
-local setmetatable = setmetatable
-local     graphics = love.graphics
-local       ipairs = ipairs
-local          min = math.min
 local design = require 'design/design'
 
 local basicProjectile = {}
@@ -18,7 +12,7 @@ function basicProjectile:new(tower, enemy, grid)
 	}
 	setmetatable(basicprojectile, {__index = self})
 
-	insert(grid.projectiles, basicprojectile)
+	table.insert(grid.projectiles, basicprojectile)
 end
 
 function basicProjectile:update(dt, i)
@@ -28,15 +22,15 @@ function basicProjectile:update(dt, i)
 	for j, enemy in ipairs(self.grid.enemies) do
 		if (self.x - enemy.x) ^ 2 + (self.y - enemy.y) ^ 2 <= 1 / 16 then
 			enemy:hit(self.tower.damage)
-			remove(self.grid.projectiles, i)
+			table.remove(self.grid.projectiles, i)
 			break
 		end
 	end
 
 	if self.x > #self.grid.cells[1] + 1 or self.x < -1
 	or self.y > #self.grid.cells + 1    or self.y < -1 then
-		remove(self.grid.projectiles, i)
-	end	
+		table.remove(self.grid.projectiles, i)
+	end
 end
 
 function basicProjectile:draw()

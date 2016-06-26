@@ -6,7 +6,6 @@ local EnemyGenerator = require 'enemygenerator'
 local         Player = require 'player'
 local              f = require 'levels/panelFunctions'
 local              m = require 'music'
-local     graphics = love.graphics
 local         defs = require 'design/defs'
 
 m.playMusic 'apoplexy.mod'
@@ -25,16 +24,16 @@ local conf = {
 
 local player = Player:new(conf)
 
-local bg = graphics.newImage("levels/img/grass.jpeg")
+local bg = love.graphics.newImage("levels/img/grass.jpeg")
 
 local function gridDraw(self)
-	graphics.draw(
+	love.graphics.draw(
 		bg,
 		0,
 		0,
 		0,
-		graphics.getWidth()/defs.width,
-		graphics.getHeight()/defs.height
+		love.graphics.getWidth()/defs.width,
+		love.graphics.getHeight()/defs.height
 		)
 end
 

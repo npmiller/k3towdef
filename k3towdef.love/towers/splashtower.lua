@@ -1,11 +1,7 @@
-local             defs = require 'design/defs'
 local            Tower = require 'tower'
 local SplashProjectile = require 'towers/splashprojectile'
-local           ipairs = ipairs
-local     setmetatable = setmetatable
-local           insert = table.insert
-local graphics = love.graphics
-local design = require 'design/design'
+local           design = require 'design/design'
+local             defs = require 'design/defs'
 
 local SplashTower = Tower:new()
 
@@ -25,7 +21,7 @@ function SplashTower:new(Cell, grid)
 
 	setmetatable(splashtower, {__index = self})
 
-	insert(grid.towers, splashtower)
+	table.insert(grid.towers, splashtower)
 	return splashtower
 end
 

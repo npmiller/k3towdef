@@ -1,12 +1,14 @@
-module 'levels/levels'
+local l = {}
 
 function const(x)
 	return function() return x end
 end
 
-up    = const {x =  0, y = -1}
-down  = const {x =  0, y =  1}
-left  = const {x = -1, y =  0}
-right = const {x =  1, y =  0}
+l.up    = const {x =  0, y = -1}
+l.down  = const {x =  0, y =  1}
+l.left  = const {x = -1, y =  0}
+l.right = const {x =  1, y =  0}
 
-stop = const "stop"
+l.stop = const "stop"
+
+return l

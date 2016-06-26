@@ -1,9 +1,3 @@
-local       insert = table.insert
-local       remove = table.remove
-local setmetatable = setmetatable
-local     graphics = love.graphics
-local       ipairs = ipairs
-local          min = math.min
 local design = require 'design/design'
 
 local FreezeProjectile = {maxTimer = 0.2}
@@ -18,13 +12,13 @@ function FreezeProjectile:new(tower, enemy, grid)
 	}
 	setmetatable(freezeprojectile, {__index = self})
 
-	insert(grid.projectiles, freezeprojectile)
+	table.insert(grid.projectiles, freezeprojectile)
 end
 
 function FreezeProjectile:update(dt, i)
 	for j, enemy in ipairs(self.grid.enemies) do
 		if self.tower:isInRange(enemy.x, enemy.y) then
-			enemy:hit(self.tower.damage) 
+			enemy:hit(self.tower.damage)
 			if enemy.speed > 0 then
 				enemy.speed = 0
 			end
@@ -36,8 +30,8 @@ function FreezeProjectile:update(dt, i)
 	if self.timer > self.maxTimer
 	or self.x > #self.grid.cells[1] + 1 or self.x < -1
 	or self.y > #self.grid.cells + 1    or self.y < -1 then
-		remove(self.grid.projectiles, i)
-	end	
+		table.remove(self.grid.projectiles, i)
+	end
 end
 
 function FreezeProjectile:draw()

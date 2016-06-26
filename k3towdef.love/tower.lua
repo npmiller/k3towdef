@@ -1,12 +1,3 @@
-local      require = require
-local         defs = require 'design/defs'
-local     graphics = love.graphics
-local       ipairs = ipairs
-local setmetatable = setmetatable
-local       insert = table.insert
-local          min = math.min
-local          max = math.max
-local     tostring = tostring
 
 local Tower = {constructible = false, dynamic = false}
 
@@ -23,9 +14,9 @@ end
 
 function Tower:updateSize()
 	self.radius = (self.range + 1 / 2) ^ 2
-	self.drawParameters.xscale = max(1, self.width / self.height)
-	self.drawParameters.yscale = max(1, self.height / self.width)
-	self.drawParameters.minSide = min(self.width, self.height)
+	self.drawParameters.xscale = math.max(1, self.width / self.height)
+	self.drawParameters.yscale = math.max(1, self.height / self.width)
+	self.drawParameters.minSide = math.min(self.width, self.height)
 	
 end
 
@@ -33,18 +24,18 @@ function Tower:draw()
 end
 
 function Tower:drawRange()
-	graphics.push()
-	graphics.scale(self.drawParameters.xscale, self.drawParameters.yscale)
+	love.graphics.push()
+	love.graphics.scale(self.drawParameters.xscale, self.drawParameters.yscale)
 	for i, circle in ipairs(self.RangeStyle) do
-		graphics.setColor(circle.color)
-		graphics.circle(circle.mode,
+		love.graphics.setColor(circle.color)
+		love.graphics.circle(circle.mode,
 			(self.x - 1/2) * self.drawParameters.minSide,
 			(self.y - 1/2) * self.drawParameters.minSide,
 			(self.range + 1/2) * self.drawParameters.minSide,
 			50)
 	end
 
-	graphics.pop()
+	love.graphics.pop()
 end
 
 function Tower:place(coord, grid)

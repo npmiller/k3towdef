@@ -1,19 +1,19 @@
-local              l = require 'levels/levels'
-local           Cell = require 'cell'
-local           Path = require 'path'
-local              f = require 'levels/panelFunctions'
-local              m = require 'music'
-local     graphics = love.graphics
-local         defs = require 'design/defs'
+local        l = require 'levels/levels'
+local     Cell = require 'cell'
+local     Path = require 'path'
+local GameCell = require 'gamecell'
+local        f = require 'levels/panelFunctions'
+local        m = require 'music'
+local     defs = require 'design/defs'
 
 m.playMusic 'musix-rm.mod'
 
 local function gridDraw(self)
-	graphics.setColor(0, 0, 0, 128)
-	graphics.rectangle(
+	love.graphics.setColor(0, 0, 0, 128)
+	love.graphics.rectangle(
 		'fill', 0, 0,
-		graphics.getWidth(),
-		graphics.getHeight()
+		love.graphics.getWidth(),
+		love.graphics.getHeight()
 		)
 end
 

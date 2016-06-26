@@ -1,20 +1,7 @@
-local     graphics = love.graphics
-local setmetatable = setmetatable
-local        pairs = pairs
-local          min = math.min
-local       insert = table.insert
-local       remove = table.remove
-local        floor = math.floor
 local design = require 'design/design'
 
 local Enemy = {}
 
---- Fonction qui crée un objet ennemi
---@param life la vie de l'ennemi créé
---@param speed sa vitesse
---@param grid la grille sur laquelle il va être placé
---@param position la position à laquelle il sera placé sur la grille
---@return enemy un objet enemi
 function Enemy:new(life, speed, grid, position, direction)
 	local enemy = {
 		life = life,
@@ -33,24 +20,19 @@ function Enemy:new(life, speed, grid, position, direction)
 	}
 
 	setmetatable(enemy, {__index = self})
-	insert(grid.enemies, enemy)
+	table.insert(grid.enemies, enemy)
 
 	return enemy
 end
 
---- Fonction permettant de déterminer si l'ennemi est encore en vie
 function Enemy:isAlive()
 	return self.life > 0
 end
 
---- Fonction permettant à l'ennemi de subir des dégats
---@param d quantité de dégats reçue
 function Enemy:hit(d)
 	self.life = self.life - d
 end
 
---- Fonction de mise à jour de l'ennemi
---@param dt intervalle de temps entre deux mises à jour
 function Enemy:update(dt)
 	self.progress = self.progress + self.speed * dt
 
@@ -64,7 +46,7 @@ function Enemy:update(dt)
 		self.progress = 0
 		self.direction = self.grid[self.position]:move()
 		if self.direction == "stop" then
-			remove(self.grid.enemies, self.i)
+			table.remove(self.grid.enemies, self.i)
 			self.ingame = false
 			self.grid.player:hit(1)
 		end
@@ -72,9 +54,9 @@ function Enemy:update(dt)
 	end
 
 	if not self:isAlive() then
-		remove(self.grid.enemies, self.i)
+		table.remove(self.grid.enemies, self.i)
 		self.ingame = false
-		self.grid.player.money = self.grid.player.money + floor(self.maxLife / 25)
+		self.grid.player.money = self.grid.player.money + math.floor(self.maxLife / 25)
 	end
 	if self.speed == 0.5 then
 		self.slowTime = self.slowTime + dt
@@ -92,7 +74,6 @@ function Enemy:update(dt)
 	end
 end
 
---- Fonction qui dessine l'ennemi sur la grille
 function Enemy:draw()
 	design.enemyDraw(self)
 end

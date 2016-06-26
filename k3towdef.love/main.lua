@@ -1,8 +1,7 @@
-local            defs = require 'design/defs'
-local            Grid = require 'grid'
-local      fullscreen = defs.fullscreen
-local               m = require 'music'
-local          ipairs = ipairs
+local       defs = require 'design/defs'
+local       Grid = require 'grid'
+local fullscreen = defs.fullscreen
+local          m = require 'music'
 local grid
 local overlay
 

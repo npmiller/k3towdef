@@ -1,11 +1,7 @@
 local             defs = require 'design/defs'
 local            Tower = require 'tower'
 local FreezeProjectile = require 'towers/freezeprojectile'
-local           ipairs = ipairs
-local     setmetatable = setmetatable
-local           insert = table.insert
-local         graphics = love.graphics
-local design = require 'design/design'
+local           design = require 'design/design'
 
 local FreezeTower = Tower:new()
 
@@ -25,7 +21,7 @@ function FreezeTower:new(Cell, grid)
 
 	setmetatable(freezetower, {__index = self})
 
-	insert(grid.towers, freezetower)
+	table.insert(grid.towers, freezetower)
 	return freezetower
 end
 

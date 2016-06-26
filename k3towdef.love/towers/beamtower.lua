@@ -1,15 +1,6 @@
-local         defs = require 'design/defs'
-local        Tower = require 'tower'
-local     graphics = love.graphics
-local       ipairs = ipairs
-local setmetatable = setmetatable
-local       insert = table.insert
+local   defs = require 'design/defs'
+local  Tower = require 'tower'
 local design = require 'design/design'
-
---pour le rayon
-local       random = math.random
-local         sqrt = math.sqrt
-local       arctan = math.atan2
 
 local BeamTower = Tower:new()
 
@@ -31,27 +22,27 @@ function BeamTower:new(Cell, grid)
 
 	setmetatable(beamtower, {__index = self})
 
-	insert(grid.dynamicCells, beamtower)
+	table.insert(grid.dynamicCells, beamtower)
 	return beamtower
 end
 
 function BeamTower:dynamicDraw()
 	if self.locked ~= nil and self.locked.ingame then
-		local length_beam = sqrt(
+		local length_beam = math.sqrt(
 			(self.x * self.width - self.locked.x) ^ 2 +
 			(self.y * self.height - self.locked.y) ^ 2) --Pythagore FTW
 
-		graphics.setColor(73, 108, 236)
+		love.graphics.setColor(73, 108, 236)
 
 		if self.beamwidth >= 3 then
 			self.beamwidth = self.beamwidth * 0.99
 		else
-			self.beamwidth = 10 * random()
+			self.beamwidth = 10 * math.random()
 		end
 
-		graphics.setLineWidth(self.beamwidth)
-		graphics.setLineStyle('smooth')
-		graphics.line(
+		love.graphics.setLineWidth(self.beamwidth)
+		love.graphics.setLineStyle('smooth')
+		love.graphics.line(
 			self.x * self.width - (1 / 2) * self.width - (1 / 2) * self.beamwidth,
 			self.y * self.height - (1 / 2) * self.height - (1 / 2) * self.beamwidth,
 			(self.locked.x - 1 / 2) * self.width + (1 / 2) * self.beamwidth,

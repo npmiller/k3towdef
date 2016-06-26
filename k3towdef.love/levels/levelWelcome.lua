@@ -1,7 +1,7 @@
 local              l = require 'levels/levels'
 local           Cell = require 'cell'
 local           Path = require 'path'
-local      GameCell = require 'gamecell'
+local       GameCell = require 'gamecell'
 local EnemyGenerator = require 'enemygenerator'
 local              f = require 'levels/panelFunctions'
 local              m = require 'music'

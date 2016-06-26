@@ -1,13 +1,6 @@
-local     graphics = love.graphics
-local       ipairs = ipairs
-local        lower = string.lower
-local      require = require
-local setmetatable = setmetatable
-local         defs = require 'design/defs'
-local       design = require 'design/design'
+local design = require 'design/design'
 
-
-Cell = {}
+local Cell = {}
 
 function Cell:new()
 	local cell = {
@@ -28,7 +21,7 @@ end
 
 function Cell:onClick(grid)
 	if grid.towerType ~= "Cell" then
-		local tower = require('towers/' .. lower(grid.towerType))
+		local tower = require('towers/' .. string.lower(grid.towerType))
 		tower:place({x = self.x, y = self.y}, grid)
 	end
 

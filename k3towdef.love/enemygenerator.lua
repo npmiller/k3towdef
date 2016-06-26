@@ -1,9 +1,5 @@
-local         Path = require 'path'
-local        Enemy = require 'enemy'
-local     graphics = love.graphics
-local setmetatable = setmetatable
-local         type = type
-local         next = next
+local  Path = require 'path'
+local Enemy = require 'enemy'
 
 local EnemyGenerator = Path:new()
 

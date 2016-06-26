@@ -1,5 +1,3 @@
-local audio = love.audio
-
 local m = {}
 
 local paused = false
@@ -7,13 +5,13 @@ local source = ''
 
 function m.playMusic(mus)
 	if mus ~= source then
-		audio.stop()
+		love.audio.stop()
 
-		local music = audio.newSource("res/snd/" .. mus, 'stream')
+		local music = love.audio.newSource("res/snd/" .. mus, 'stream')
 		music:setLooping(true)
-		audio.play(music)
+		love.audio.play(music)
 		if paused then
-			audio.pause()
+			love.audio.pause()
 		end
 
 		source = mus
@@ -22,9 +20,9 @@ end
 
 function m.toggle()
 	if paused then
-		audio.resume()
+		love.audio.resume()
 	else
-		audio.pause()
+		love.audio.pause()
 	end
 	paused = not paused
 end

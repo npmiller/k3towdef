@@ -1,16 +1,6 @@
-local     graphics = love.graphics
-local       ipairs = ipairs
-local        pairs = pairs
-local setmetatable = setmetatable
 local         Cell = require 'cell'
 local         Path = require 'path'
 local         defs = require 'design/defs'
-local         next = next
-local       insert = table.insert
-local         type = type
-local       rawget = rawget
-local       rawset = rawset
-local getmetatable = getmetatable
 
 local function loadLevel(name)
 	package.loaded[name] = nil
@@ -31,9 +21,9 @@ local Grid = {
 			table.cells[key.y][key.x] = value
 			local cell = table.cells[key.y][key.x]
 			cell:updateSize()
-			graphics.setCanvas(table.canvas)
+			love.graphics.setCanvas(table.canvas)
 			cell:draw()
-			graphics.setCanvas()
+			love.graphics.setCanvas()
 		else
 			rawset(table, key, value)
 		end
@@ -47,7 +37,6 @@ function Grid:load(base)
 		name = base,
 		cells = level.Cells,
 		player = level.player,
-		--img = graphics.newImage(level.img),
 		gridDraw = level.gridDraw,
 		enemies = {},
 		towers = {},
@@ -66,10 +55,10 @@ function Grid:load(base)
 
 	for _, cell in grid:range() do
 		if cell.dynamic then
-			insert(grid.dynamicCells, cell)
+			table.insert(grid.dynamicCells, cell)
 		end
 		if cell.nextWave then
-			insert(grid.generators, cell)
+			table.insert(grid.generators, cell)
 		end
 	end
 
@@ -114,21 +103,21 @@ function Grid:range()
 end
 
 function Grid:drawCanvas()
-	graphics.reset()
-	self.canvas = graphics.newCanvas(self.width, self.height)
-	graphics.setCanvas(self.canvas)
-	graphics.clear()
+	love.graphics.reset()
+	self.canvas = love.graphics.newCanvas(self.width, self.height)
+	love.graphics.setCanvas(self.canvas)
+	love.graphics.clear()
 	self:gridDraw()
 
 	for _, cell in self:range() do
 		cell:draw()
 	end
-	graphics.setCanvas()
+	love.graphics.setCanvas()
 end
 
 function Grid:updateSize()
-	self.width = graphics.getWidth()
-	self.height = graphics.getHeight()
+	self.width = love.graphics.getWidth()
+	self.height = love.graphics.getHeight()
 
 	local width = self.width / #(self.cells[1])
 	local height = self.height / #self.cells
@@ -186,8 +175,8 @@ function Grid:play()
 end
 
 function Grid:draw()
-	graphics.reset()
-	graphics.draw(self.canvas)
+	love.graphics.reset()
+	love.graphics.draw(self.canvas)
 
 	for i, cell in pairs(self.dynamicCells) do
 		cell:dynamicDraw()
